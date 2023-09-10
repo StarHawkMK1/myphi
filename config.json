@@ -1,5 +1,5 @@
 {
-  "_name_or_path": "phi-1.5",
+  "_name_or_path": "phi-1.5-half",
   "activation_function": "gelu_new",
   "architecture": {
     "block_cls": "parallel",
