@@ -29,7 +29,7 @@
   "resid_pdrop": 0.0,
   "rotary_dim": 32,
   "tie_word_embeddings": false,
-  "torch_dtype": "float32",
+  "torch_dtype": "float16",
   "transformers_version": "4.32.1",
   "vocab_size": 51200
 }
