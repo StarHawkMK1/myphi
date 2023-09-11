@@ -35,18 +35,24 @@ where the model generates the text after "Bob:".
 
 #### Code format:
 ```python
+\`\`\`python
 def print_prime(n):
    """
    Print all primes between 1 and n
    """
    primes = []
    for num in range(2, n+1):
-       for i in range(2, num):
+       is_prime = True
+       for i in range(2, int(num**0.5)+1):
            if num % i == 0:
+               is_prime = False
                break
-       else:
+       if is_prime:
            primes.append(num)
    print(primes)
+
+print_prime(20)
+\`\`\`
 ```
 where the model generates the text after the comments. (Note: This is a legitimate and correct use of the else statement in Python loops.)
 
@@ -80,6 +86,26 @@ where the model generates the text after the comments. (Note: This is a legitima
 
 ### License
 The model is licensed under the [Research License](https://huggingface.co/microsoft/phi-1_5/resolve/main/Research%20License.docx).
+
+### Sample Code
+```python
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+torch.set_default_device('cuda')
+model = AutoModelForCausalLM.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
+tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
+inputs = tokenizer('''```python
+def print_prime(n):
+   """
+   Print all primes between 1 and n
+   """''', return_tensors="pt", return_attention_mask=False)
+
+eos_token_id = tokenizer.encode("```")[0]
+outputs = model.generate(**inputs, max_length=500)
+text = tokenizer.batch_decode(outputs)[0]
+print(text)
+```
 
 ### Citation
 ```bib
