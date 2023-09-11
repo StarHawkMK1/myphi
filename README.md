@@ -34,8 +34,8 @@ Bob: Have you tried using a timer? It can help you stay on track and avoid distr
 where the model generates the text after "Bob:".
 
 #### Code format:
+~~~python
 ```python
-\`\`\`python
 def print_prime(n):
    """
    Print all primes between 1 and n
@@ -52,8 +52,8 @@ def print_prime(n):
    print(primes)
 
 print_prime(20)
-\`\`\`
 ```
+~~~
 where the model generates the text after the comments. (Note: This is a legitimate and correct use of the else statement in Python loops.)
 
 **Notes**
