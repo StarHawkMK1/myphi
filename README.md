@@ -13,7 +13,7 @@ We did not fine-tune phi-1.5 either for instruction following or through reinfor
 For a safer model release, we exclude generic web-crawl data sources such as common-crawl from the training. This strategy prevents direct exposure to potentially harmful online content, enhancing the model's safety without RLHF. However, the model is still vulnerable to generating harmful content. We hope the model can help the research community to further study the safety of language models.
 
 ## Intended Uses
-Given the nature of the training data, phi-1.5 is best suited for prompts using the QA format, the chat format, and the code format:
+Given the nature of the training data, phi-1.5 is best suited for prompts using the QA format, the chat format, and the code format. Note that phi-1.5, being a base model, often produces irrelevant text following the main answer. In the following example, we've truncated the answer for illustrative purposes only.
 
 #### QA format:
 
