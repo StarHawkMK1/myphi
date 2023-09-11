@@ -101,7 +101,7 @@ def print_prime(n):
    Print all primes between 1 and n
    """''', return_tensors="pt", return_attention_mask=False)
 
-eos_token_id = tokenizer.encode("```")[0]
+eos_token_id = tokenizer.encode("``<|endoftext|>") # generation ends at `` or <|endoftext|>
 outputs = model.generate(**inputs, max_length=500)
 text = tokenizer.batch_decode(outputs)[0]
 print(text)
