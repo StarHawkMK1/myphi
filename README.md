@@ -81,7 +81,7 @@ where the model generates the text after the comments.
 
 ## Training
 
-### Model (phi-1.5)
+### Model
 * Architecture: a Transformer-based model with next-word prediction objective
 * Dataset size: 30B tokens
 * Training tokens: 150B tokens
