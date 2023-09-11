@@ -18,23 +18,36 @@ Given the nature of the training data, phi-1.5 is best suited for prompts using 
 #### QA format:
 
 ```markdown
-Write an analogy between a mind and a lighthouse.
+Write a detailed analogy between mathematics and a lighthouse.
 
-Answer: A mind is like a lighthouse, guiding us through the darkness of ignorance and fear.
+Answer: Mathematics is like a lighthouse, guiding us through the vast ocean of numbers and calculations. Just as a lighthouse illuminates the darkness, mathematics provides us with a clear path to navigate through complex problems. It helps us make sense of the world around us, just like a lighthouse helps ships find their way home.
 ```
 where the model generates the text after "Answer:".
 
 #### Chat format:
 
 ```markdown
-Alice: I don't know why, I'm struggling to maintain focus while studying. Any suggestions?
+Alice: Alice: I don't know why, I'm struggling to maintain focus while studying. Any suggestions?
 
 Bob: Have you tried using a timer? It can help you stay on track and avoid distractions.
+
+Alice: That's a good idea. I'll give it a try.
+
+Charlie: Another thing that can help is to break up your study sessions into smaller chunks. It's easier to concentrate on one thing at a time.
+
+Alice: That makes sense. I'll try that too.
+
+Bob: And don't forget to take breaks! It's important to give your brain a rest so you can come back to your studies with a fresh perspective.
+
+Alice: Thanks for the advice, guys. I feel more motivated now.
+
+Charlie: No problem, Alice. We're all in this together.
+
+Bob: Yeah, and remember that it's okay to ask for help if you need it. We're here to support each other.
 ```
-where the model generates the text after "Bob:".
+where the model generates the text after the first "Bob:".
 
 #### Code format:
-~~~python
 ```python
 def print_prime(n):
    """
@@ -43,18 +56,15 @@ def print_prime(n):
    primes = []
    for num in range(2, n+1):
        is_prime = True
-       for i in range(2, int(num**0.5)+1):
+       for i in range(2, int(math.sqrt(num))+1):
            if num % i == 0:
                is_prime = False
                break
        if is_prime:
            primes.append(num)
    print(primes)
-
-print_prime(20)
 ```
-~~~
-where the model generates the text after the comments. (Note: This is a legitimate and correct use of the else statement in Python loops.)
+where the model generates the text after the comments.
 
 **Notes**
 * phi-1.5 is intended for research purposes. The model-generated text/code should be treated as a starting point rather than a definitive solution for potential use cases. Users should be cautious when employing these models in their applications.
@@ -92,7 +102,6 @@ The model is licensed under the [Research License](https://huggingface.co/micros
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-torch.set_default_device('cuda')
 model = AutoModelForCausalLM.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
 tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
 inputs = tokenizer('''```python
@@ -101,8 +110,7 @@ def print_prime(n):
    Print all primes between 1 and n
    """''', return_tensors="pt", return_attention_mask=False)
 
-eos_token_id = tokenizer.encode("``<|endoftext|>") # generation ends at `` or <|endoftext|>
-outputs = model.generate(**inputs, max_length=500)
+outputs = model.generate(**inputs, max_length=200)
 text = tokenizer.batch_decode(outputs)[0]
 print(text)
 ```
