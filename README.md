@@ -116,7 +116,7 @@ print(text)
 ```
 
 **Remark.** In the generation function, our model currently does not support beam search (`num_beams` >1) and `attention_mask' parameters. 
-Furthermore, in the forward pass of the model, we currently do not support outputing hidden states or attention values, using custom input embeddings (instead of the model's).
+Furthermore, in the forward pass of the model, we currently do not support outputing hidden states or attention values, or using custom input embeddings (instead of the model's).
 
 ### Citation
 ```bib
