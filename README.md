@@ -119,6 +119,9 @@ print(text)
 Furthermore, in the forward pass of the model, we currently do not support outputing hidden states or attention values, or using custom input embeddings (instead of the model's).
 
 ### Citation
+
+You can find the paper at https://arxiv.org/abs/2309.05463
+
 ```bib
 @article{textbooks2,
   title={Textbooks Are All You Need II: \textbf{phi-1.5} technical report},
