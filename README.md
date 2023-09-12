@@ -8,7 +8,7 @@ pipeline_tag: text-generation
 
 The language model phi-1.5 is a Transformer with 1.3 billion parameters. It was trained using the same data sources as [phi-1](https://huggingface.co/microsoft/phi-1), augmented with a new data source that consists of various NLP synthetic texts. When assessed against benchmarks testing common sense, language understanding, and logical reasoning, phi-1.5 demonstrates a nearly state-of-the-art performance among models with less than 10 billion parameters.
 
-We did not fine-tune phi-1.5 either for instruction following or through reinforcement learning from human feedback. The intention behind crafting this open-source model is to provide the research community with a non-restricted small model to explore vital safety challenges, such as reducing toxicity, understanding societal biases, enhancing controllability, and more.
+We **did not** fine-tune phi-1.5 either for **instruction following or through reinforcement learning from human feedback**. The intention behind crafting this open-source model is to provide the research community with a non-restricted small model to explore vital safety challenges, such as reducing toxicity, understanding societal biases, enhancing controllability, and more.
 
 For a safer model release, we exclude generic web-crawl data sources such as common-crawl from the training. This strategy prevents direct exposure to potentially harmful online content, enhancing the model's safety without RLHF. However, the model is still vulnerable to generating harmful content. We hope the model can help the research community to further study the safety of language models.
 
@@ -27,7 +27,7 @@ where the model generates the text after "Answer:".
 #### Chat format:
 
 ```markdown
-Alice: Alice: I don't know why, I'm struggling to maintain focus while studying. Any suggestions?
+Alice: I don't know why, I'm struggling to maintain focus while studying. Any suggestions?
 
 Bob: Have you tried using a timer? It can help you stay on track and avoid distractions.
 
@@ -102,6 +102,7 @@ The model is licensed under the [Research License](https://huggingface.co/micros
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+torch.set_default_device('cuda')
 model = AutoModelForCausalLM.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
 tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
 inputs = tokenizer('''```python
@@ -116,7 +117,7 @@ print(text)
 ```
 
 **Remark.** In the generation function, our model currently does not support beam search (`num_beams` >1) and `attention_mask' parameters. 
-Furthermore, in the forward pass of the model, we currently do not support outputing hidden states or attention values, or using custom input embeddings (instead of the model's).
+Furthermore, in the forward pass of the model, we currently do not support outputting hidden states or attention values, or using custom input embeddings (instead of the model's).
 
 ### Citation
 
