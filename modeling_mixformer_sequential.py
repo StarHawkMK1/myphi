@@ -717,6 +717,7 @@ class MixFormerSequentialForCausalLM(MixFormerSequentialPreTrainedModel):
 
     _keys_to_ignore_on_load_missing = [""]
     _keys_to_ignore_on_load_unexpected = [r"layers\.\d+\.mlp.(fc_in|fc_out)\.(weight|bias)"]
+    _no_split_modules = ["ParallelBlock"]
 
     def __init__(self, config: MixFormerSequentialConfig) -> None:
         super().__init__(config)
