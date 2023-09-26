@@ -118,7 +118,7 @@ text = tokenizer.batch_decode(outputs)[0]
 print(text)
 ```
 
-**Remark.** In the generation function, our model currently does not support beam search (`num_beams` >1) and `attention_mask' parameters. 
+**Remark.** In the generation function, our model currently does not support beam search (`num_beams` >1). 
 Furthermore, in the forward pass of the model, we currently do not support outputting hidden states or attention values, or using custom input embeddings (instead of the model's).
 
 ### Citation

@@ -17,8 +17,6 @@ class MixFormerSequentialConfig(PretrainedConfig):
         "hidden_size": "n_embd",
         "num_attention_heads": "n_head",
         "num_hidden_layers": "n_layer",
-        "input_emb_layer": "embd_layer",  # `input_emb_layer` key is for backward compatibility
-        "blocks": "architecture",  # `blocks` key is for backward compatibility
     }
 
     def __init__(
@@ -31,8 +29,6 @@ class MixFormerSequentialConfig(PretrainedConfig):
         n_head: Optional[int] = 16,
         rotary_dim: Optional[int] = 32,
         activation_function: Optional[str] = "gelu_new",
-        embd_layer: Optional[str] = "default",
-        architecture: Union[Dict[str, Any], List[Dict[str, Any]]] = None,
         embd_pdrop: Optional[float] = 0.0,
         resid_pdrop: Optional[float] = 0.0,
         layer_norm_epsilon: Optional[float] = 1e-5,
@@ -49,8 +45,6 @@ class MixFormerSequentialConfig(PretrainedConfig):
         self.n_head = n_head
         self.rotary_dim = min(rotary_dim, n_embd // n_head)
         self.activation_function = activation_function
-        self.embd_layer = embd_layer
-        self.architecture = architecture
         self.embd_pdrop = embd_pdrop
         self.resid_pdrop = resid_pdrop
         self.layer_norm_epsilon = layer_norm_epsilon

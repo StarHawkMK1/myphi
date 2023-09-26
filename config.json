@@ -1,13 +1,6 @@
 {
   "_name_or_path": "phi-1.5-half",
   "activation_function": "gelu_new",
-  "architecture": {
-    "block_cls": "parallel",
-    "mixer": {},
-    "mlp": {
-      "mlp_cls": "mlp"
-    }
-  },
   "architectures": [
     "MixFormerSequentialForCausalLM"
   ],
@@ -15,7 +8,6 @@
     "AutoConfig": "configuration_mixformer_sequential.MixFormerSequentialConfig",
     "AutoModelForCausalLM": "modeling_mixformer_sequential.MixFormerSequentialForCausalLM"
   },
-  "embd_layer": "default",
   "embd_pdrop": 0.0,
   "initializer_range": 0.02,
   "layer_norm_epsilon": 1e-05,
@@ -25,7 +17,6 @@
   "n_inner": null,
   "n_layer": 24,
   "n_positions": 2048,
-  "phyagi_version": "0.0.4.dev",
   "resid_pdrop": 0.0,
   "rotary_dim": 32,
   "tie_word_embeddings": false,
