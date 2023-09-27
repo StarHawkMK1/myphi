@@ -1,5 +1,7 @@
 ---
 license: other
+license_name: microsoft-research-license
+license_link: https://huggingface.co/microsoft/phi-1_5/resolve/main/Research%20License.docx
 language:
 - en
 pipeline_tag: text-generation
