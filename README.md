@@ -104,9 +104,9 @@ The model is licensed under the [Research License](https://huggingface.co/micros
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-torch.set_default_device('cuda')
-model = AutoModelForCausalLM.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
-tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-1_5", trust_remote_code=True, torch_dtype="auto")
+torch.set_default_device("cuda")
+model = AutoModelForCausalLM.from_pretrained("microsoft/phi-1_5", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-1_5", trust_remote_code=True)
 inputs = tokenizer('''```python
 def print_prime(n):
    """
@@ -118,8 +118,14 @@ text = tokenizer.batch_decode(outputs)[0]
 print(text)
 ```
 
-**Remark.** In the generation function, our model currently does not support beam search (`num_beams` >1). 
-Furthermore, in the forward pass of the model, we currently do not support outputting hidden states or attention values, or using custom input embeddings (instead of the model's).
+If you need to use the model in a lower precision (e.g., FP16), please wrap the model's forward pass with `torch.autocast()`, as follows:
+```python
+with torch.autocast(model.device.type, dtype=torch.float16, enabled=True):
+    outputs = model.generate(**inputs, max_length=200)
+```
+
+**Remark.** In the generation function, our model currently does not support beam search (`num_beams` > 1). 
+Furthermore, in the forward pass of the model, we currently do not support attention mask during training, outputting hidden states or attention values, or using custom input embeddings (instead of the model's).
 
 ### Citation
 
