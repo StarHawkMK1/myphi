@@ -711,6 +711,10 @@ class MixFormerSequentialPreTrainedModel(PreTrainedModel):
             "past_key_values": past_key_values,
             "attention_mask": attention_mask,
         }
+    
+    def _set_gradient_checkpointing(self, module, value=False):
+            if isinstance(module, MixFormerSequentialPreTrainedModel):
+                module.gradient_checkpointing = value
 
 
 class MixFormerSequentialForCausalLM(MixFormerSequentialPreTrainedModel):
