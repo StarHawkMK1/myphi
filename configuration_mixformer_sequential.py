@@ -2,7 +2,7 @@
 # Licensed under the MIT license.
 
 import math
-from typing import Any, Dict, List, Optional, Union
+from typing import Optional
 
 from transformers import PretrainedConfig
 
@@ -27,6 +27,7 @@ class MixFormerSequentialConfig(PretrainedConfig):
         n_layer: Optional[int] = 20,
         n_inner: Optional[int] = None,
         n_head: Optional[int] = 16,
+        n_head_kv: Optional[int] = None,
         rotary_dim: Optional[int] = 32,
         activation_function: Optional[str] = "gelu_new",
         embd_pdrop: Optional[float] = 0.0,
@@ -43,6 +44,7 @@ class MixFormerSequentialConfig(PretrainedConfig):
         self.n_layer = n_layer
         self.n_inner = n_inner
         self.n_head = n_head
+        self.n_head_kv = n_head_kv
         self.rotary_dim = min(rotary_dim, n_embd // n_head)
         self.activation_function = activation_function
         self.embd_pdrop = embd_pdrop
