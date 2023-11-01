@@ -30,6 +30,9 @@ class MixFormerSequentialConfig(PretrainedConfig):
         n_head_kv: Optional[int] = None,
         rotary_dim: Optional[int] = 32,
         activation_function: Optional[str] = "gelu_new",
+        flash_rotary: bool = False,
+        fused_dense: bool = False,
+        attn_pdrop: Optional[float] = 0.0,
         embd_pdrop: Optional[float] = 0.0,
         resid_pdrop: Optional[float] = 0.0,
         layer_norm_epsilon: Optional[float] = 1e-5,
@@ -47,6 +50,9 @@ class MixFormerSequentialConfig(PretrainedConfig):
         self.n_head_kv = n_head_kv
         self.rotary_dim = min(rotary_dim, n_embd // n_head)
         self.activation_function = activation_function
+        self.flash_rotary = flash_rotary
+        self.fused_dense = fused_dense
+        self.attn_pdrop = attn_pdrop
         self.embd_pdrop = embd_pdrop
         self.resid_pdrop = resid_pdrop
         self.layer_norm_epsilon = layer_norm_epsilon
